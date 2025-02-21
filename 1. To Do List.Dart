@@ -111,7 +111,7 @@ void deleteTasks()
 
   var taskToDelete = stdin.readLineSync();
 
-  var updatedFile = fileContents.replaceAll("$taskToDelete", "");
+  var updatedFile = fileContents.deleteSync("$taskToDelete");
 
   print(fileContents);
 }
