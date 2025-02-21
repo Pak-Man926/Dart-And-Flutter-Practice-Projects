@@ -32,16 +32,12 @@ void main()
     case 3: 
       updateTasks();
       break;
-      
+  
     case 4:
-      completeTasks();
-      break;
-      
-    case 5:
       deleteTasks();
       break;
   
-    case 6:
+    case 5:
       exitApp();
       break;
       
@@ -82,6 +78,43 @@ void addTasks()
   }
 }
 
+void updateTasks()
+{
+  File file = File("To-Do.txt");
+
+  var fileContents = file.readAsStringSync();
+
+  print(fileContents);
+
+  print("Enter the task you'd like to update:");
+
+  var oldTask = stdin.readLineSync();
+
+  print("Enter the new task:");
+
+  var newTask = stdin.readLineSync();
+
+  var udatedFile = file.replaceAll("$oldTask", "$newTask");
+  
+  print(fileContents);
+}
+
+void deleteTasks()
+{
+  File file = File("To-Do.txt");
+
+  var fileContents = file.readAsStringSync();
+
+  print(fileContents);
+
+  print("Enter the task you'd like to delete:");
+
+  var taskToDelete = stdin.readLineSync();
+
+  var updatedFile = fileContents.replaceAll("$taskToDelete", "");
+
+  print(fileContents);
+}
 void exitApp()
   {
     SystemNavigator.pop();
