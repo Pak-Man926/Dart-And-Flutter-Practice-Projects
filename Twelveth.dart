@@ -59,6 +59,7 @@ class MyApp extends StatelessWidget
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          debugShowCheckedModeBanner: false,
           centerTitle: true,
           title: Text("Social Media App"),
         ),
