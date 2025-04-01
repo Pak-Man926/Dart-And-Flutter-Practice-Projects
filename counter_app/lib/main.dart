@@ -48,6 +48,14 @@ class _CounterScreenState extends State<CounterScreen>
              }
             );
   }
+
+  void _resetCounter()
+  {
+    setState(()
+    {
+      _counter = 0;
+    });
+  }
   
   @override
   Widget build(BuildContext context)
@@ -76,11 +84,16 @@ class _CounterScreenState extends State<CounterScreen>
                   onPressed: _incrementCounter,
                   child: Text("Increment")
                 ),
-                SizedBox(width: 20),
+                //SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: _decrementCounter,
                   child: Text("Decrement")
+                ),
+                ElevatedButton(
+                  onPressed: _resetCounter,
+                  child: Text("Reset"),
                 )
+
               ]
             )
           ]
