@@ -1,105 +1,71 @@
 import "package:flutter/material.dart";
+import "package:provider/provider.dart";
+import "counter_provider.dart";
 
 void main()
 {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create : (_) => CounterProvider()),
+      ],
+      child: MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget
 {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context)
   {
     return MaterialApp(
-      home: CounterScreen()
+      home: CounterScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
     );
   }
 }
 
-class CounterScreen extends StatefulWidget
+class CounterScreen extends StatelessWidget
 {
-  const CounterScreen({super.key});
-
-  @override
-  _CounterScreenState createState() => _CounterScreenState();
-  
-}
-
-class _CounterScreenState extends State<CounterScreen>
-{
-  int _counter = 0;
-  
-  void _incrementCounter()
-  {
-    setState(()
-            
-             {
-               _counter ++;
-             });
-  }
-  
-  void _decrementCounter()
-  {
-    setState(()
-             {
-               _counter --;
-             }
-            );
-  }
-
-  void _resetCounter()
-  {
-    setState(()
-    {
-      _counter = 0;
-    });
-  }
-  
   @override
   Widget build(BuildContext context)
   {
+    final counterProvider = Provider.of<CounterProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Counter App")
+        title: Text("Provider State Management"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Counter Value",
-                style: TextStyle(fontSize: 24)
-                ),
-            
-            Text("$_counter",
-                  style: TextStyle(fontSize:40, fontWeight: FontWeight.bold), 
-                ),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: _incrementCounter,
-                  child: Text("Increment")
-                ),
-                //SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: _decrementCounter,
-                  child: Text("Decrement")
-                ),
-                ElevatedButton(
-                  onPressed: _resetCounter,
-                  child: Text("Reset"),
-                )
-
-              ]
-            )
-          ]
-        )
+            Text(
+              "Counter Value:",
+              style: TextStyle(fontSize:24),
+            ),
+            SizedBox(height: 10),
+            Text(
+              "${counterProvider.counter}",
+              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold)
+            ),
+            SizedBox(height:40),
+            ElevatedButton(
+              onPressed: counterProvider.increment,
+              child: Text("Increment"),
+            ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: counterProvider.decrement,
+              child:Text("Decrement"),
+              ),
+          ],
+          )
       )
     );
-    
   }
 }
