@@ -16,6 +16,8 @@ void main()
 
 class MyApp extends StatelessWidget
 {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context)
   {
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget
 
 class ThemeToggleScreen extends StatelessWidget
 {
+  const ThemeToggleScreen({super.key});
+
   @override
   Widget build(BuildContext context)
   {

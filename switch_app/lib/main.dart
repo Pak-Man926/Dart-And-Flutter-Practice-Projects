@@ -7,6 +7,8 @@ void main()
 
 class MyApp extends StatelessWidget
 {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context)
   {
@@ -18,6 +20,9 @@ class MyApp extends StatelessWidget
 
 class ToggleSwitch extends StatefulWidget
 {
+  const ToggleSwitch({super.key});
+
+  @override
   _ToggleSwitchState createState() => _ToggleSwitchState();
 }
 
