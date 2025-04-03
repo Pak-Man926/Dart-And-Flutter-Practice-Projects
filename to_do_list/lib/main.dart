@@ -11,7 +11,7 @@ void main()
       ],
       child: MyApp(),
     )
-  )
+  );
 }
 
 class MyApp extends StatelessWidget
@@ -82,7 +82,20 @@ class TaskScreen extends StatelessWidget
                 final task = taskProvider.tasks[index];
 
                 return ListTile(
-                  
+                  title: Text(
+                    task.title,
+                    style: TextStyle(
+                      decoration: task.isCompleted ? TextDecoration.lineThrough : TextDecoration.none, 
+                    ),
+                  ),
+                  leading: Checkbox(
+                      value: task.isCompleted,
+                      onChanged: (_) => taskProvider.toggleTask(index),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () => taskProvider.deleteTask(index),
+                     icon: Icon(Icons.delete)
+                     ),
                 );
               }
             )
